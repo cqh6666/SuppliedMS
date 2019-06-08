@@ -1,14 +1,67 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
+{% load staticfiles %}
+
 <head>
-    <meta charset="UTF-8">
-    <title>Title</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="{% static 'stylesheets/index.css' %}">
+
+    <title>主页</title>
 </head>
 
 <body>
-<h1>首页</h1>
-<p><a href="{% url 'login' %}">登录</a></p>
-<p><a href="{% url 'register' %}">注册</a></p>
+    <section class="main-container">
+        <nav class="row navbar navbar-expand-lg bg-light" id="site-navbar">
+            <div class="col-sm-2"></div>
+            <div class="col-sm-7">
+                <a class="navbar-brand" href="#">物资借还管理系统</a>
+
+            </div>
+
+            <div class="col-sm-3">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'login' %}">登录</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'register' %}">注册</a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+        <div class="banner row" id="site-banner">
+            <div class="col-sm-2"></div>
+            <div class="col-sm-6">
+                <h1>物资借还管理系统</h1>
+                <p>Lorem ipsum</p>
+            </div>
+            <div class="col-sm-4">
+            </div>
+        </div>
+        <div class="index-mainpage row">
+            <div class="col-sm-2"></div>
+            <div class="col-sm-2">
+                <div class="sidebar">
+                    <h1>导航栏</h1>
+                    <ul>
+                        <li>
+                            <a href="#">查看当前可借物品</a>
+                        </li>
+                        <li>
+                            <a href="{% url 'supplied:SuppliedInfo' %}">借用物品</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+    </section>
 </body>
 
 </html>

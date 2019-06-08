@@ -1,18 +1,38 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
+{% load staticfiles %}
+
 <head>
-    <meta charset="UTF-8">
-    <title>Title</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="{% static 'stylesheets/signin.css' %}">
+
+    <title>注册</title>
 </head>
-<body>
-<h1>注册</h1>
-<form action="{% url 'register' %}" method="post">
-    <label for="id_username">用户名：</label>
-    <input type="text" id="id_username" name="username" placeholder="用户名" autofocus required/>
-    <label for="id_password">密码：</label>
-    <input type="password" id="id_password" placeholder="密码" name="password" required>
-    <input type="submit" value="确定">
-    {% csrf_token %}
-</form>
+
+<body class="text-center">
+    <div class="container">
+        <form class="form-signin" method="post" action="{% url 'register' %}">
+            <h1 class="h2 font-weight-normal">注册</h1>
+            <div>
+                {% for key,error in register_form.errors.items %}
+                    <span>{{ error }}</span>
+                {% endfor %}
+            </div>
+            <input name="email" id="email_id" class="form-control" placeholder="邮箱" required>
+            <input name="name" id="name_id" class="form-control" placeholder="姓名" required>
+            <input name="college" id="college_id" class="form-control" placeholder="学院" required>
+            <input name="mobile" id="mobile_id" class="form-control" placeholder="联系方式" required>
+            <input name="organization" id="organ_id" class="form-control" placeholder="组织" required>
+            <input name="position" id="posit_id" class="form-control" placeholder="职位" required>
+            <input name="password" type="password" id="password_id" class="form-control" placeholder="密码" required>
+            <button class="btn btn-lg btn-primary btn-block" type="submit">提交</button>
+            {% csrf_token %}
+        </form>
+    </div>
 </body>
-</html>
