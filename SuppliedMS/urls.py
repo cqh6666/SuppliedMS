@@ -16,14 +16,14 @@ Including another URLconf
 """
 from django.conf.urls import url
 from django.contrib import admin
-from django.views.generic import TemplateView
 import xadmin
 
-from users.views import IndexView,LoginView
+from users.views import IndexView,LoginView,RegisterView
 
 urlpatterns = [
     url(r'^xadmin/', xadmin.site.urls),
 
     url('^$', IndexView.as_view(), name="index"),
-    url('^login/', LoginView.as_view(),name="login")
+    url('^login/', LoginView.as_view(),name="login"),
+    url('^register/', RegisterView.as_view(),name="register")
 ]

@@ -12,7 +12,18 @@ class IndexView(View):
 
 
 class LoginView(View):
+    def get(self,request):
+        return render(request,"login.html")
     def post(self,request):
         username = request.POST.get('username')
         password = request.POST.get('password')
-        pass
+        return render(request,"login.html")
+
+
+class RegisterView(View):
+    def get(self,request):
+        return render(request,"register.html")
+    def post(self,request):
+        username = request.POST.get('username')
+        password = request.POST.get('password')
+        return render(request, "login.html")
