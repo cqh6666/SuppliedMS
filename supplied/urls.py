@@ -12,10 +12,12 @@
 """
 
 from django.conf.urls import url, include
-from .views import SuppliedInfoView
+from .views import LendTableView,SuppliedInfoView,SubmitView
 
 urlpatterns = [
     #用户信息
-    url(r'^info/$', SuppliedInfoView.as_view(), name="SuppliedInfo"),
+    url(r'^table/(?P<supplied_id>.*)/$', LendTableView.as_view(), name="LendTable"),
+    url(r'^submit',SubmitView.as_view(),name="submit"),
+    url(r'^info/$',SuppliedInfoView.as_view(),name="SuppliedInfo")
 
 ]

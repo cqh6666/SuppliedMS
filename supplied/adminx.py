@@ -12,7 +12,7 @@
 """
 
 import xadmin
-from .models import SuppliedInfo,SuppliedLend,LendTable
+from .models import SuppliedInfo,LendTable
 
 
 class SuppliedInfoAdmin(object):
@@ -28,5 +28,4 @@ class LendTableAdmin(object):
 
 
 xadmin.site.register(SuppliedInfo,SuppliedInfoAdmin)
-xadmin.site.register(SuppliedLend,SuppliedInfoAdmin)
 xadmin.site.register(LendTable,LendTableAdmin)

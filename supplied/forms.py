@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 """
 -------------------------------------------------
-   File Name：     adminx
+   File Name：     forms
    Description :
    Author :        chen
    date：          2019/6/8
@@ -10,13 +10,11 @@
                    2019/6/8:
 -------------------------------------------------
 """
-
-import xadmin
-from .models import CheckTable
-
-
-class CheckTableAdmin(object):
-    pass
+from django import forms
+from .models import LendTable
 
 
-xadmin.site.register(CheckTable,CheckTableAdmin)
+class LendTableForm(forms.ModelForm):
+    class Meta:
+        model = LendTable
+        fields = ['name','specification','number','organization','mobile']

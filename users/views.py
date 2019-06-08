@@ -33,20 +33,15 @@ class LoginView(View):
 
 
 class RegisterView(View):
+    """
+    注册
+    """
     def get(self,request):
         return render(request,"register.html",{})
     def post(self,request):
         register_form = RegisterForm(request.POST)
         if register_form.is_valid():
-            user_profile = UserProfile()
-            user_profile.username = request.POST.get("name")
-            user_profile.email = request.POST.get("email")
-            user_profile.college = request.POST.get("college")
-            user_profile.mobile = request.POST.get("mobile")
-            user_profile.organization = request.POST.get("organization")
-            user_profile.position = request.POST.get("position")
-            user_profile.password = make_password(request.POST.get("password"))
-            user_profile.save()
+            register_form.save()
             return render(request,"index.html",{"register_form":register_form})
         else:
             return render(request, "register.html",{"register_form":register_form})
