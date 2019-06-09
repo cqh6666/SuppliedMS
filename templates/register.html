@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-
+{% load staticfiles %}
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -12,13 +12,13 @@
   <title>注册账户</title>
 
   <!-- Custom fonts for this template-->
-  <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+  <link href="{% static 'vendor/fontawesome-free/css/all.min.css' %}" rel="stylesheet" type="text/css">
   <link
     href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
     rel="stylesheet">
 
   <!-- Custom styles for this template-->
-  <link href="css/sb-admin-2.min.css" rel="stylesheet">
+  <link href="{% static 'css/sb-admin-2.min.css' %}" rel="stylesheet">
 
 </head>
 
@@ -36,43 +36,36 @@
               <div class="text-center">
                 <h1 class="h4 text-gray-900 mb-4">注册账户</h1>
               </div>
-              <form class="user">
+              <form class="user" method="post" action="{% url 'register' %}">
                 <div class="form-group row">
                   <div class="col-sm-6 mb-3 mb-sm-0">
-                    <input type="text" class="form-control form-control-user" id="UserName" placeholder="姓名">
+                    <input name="username" type="text" class="form-control form-control-user" id="UserName" placeholder="姓名" required>
                   </div>
                   <div class="col-sm-6">
-                    <!-- <input type="text" class="form-control form-control-user" id="UserSchool" placeholder="所属学院"> -->
-                    <select class="form-control form-control-user" id="UserSchool">
-                      <option selected>请选择学院：</option>
-                      <option>文学院</option>
-                      <option>计算机学院</option>
-                      <option>生物科学学院</option>
-                      <option>数学科学学院</option>
-                      <option>化学与环境工程学院</option>
-                      <option>教育科学学院</option>
-                    </select>
+                    <input name="college" type="text" class="form-control form-control-user" id="college" placeholder="学院" required>
                   </div>
-                </div>
-                <div class="form-group">
-                  <input type="email" class="form-control form-control-user" id="UserEmail" placeholder="邮箱地址">
-                </div>
-                <div class="form-group">
-                  <input type="text" class="form-control form-control-user" id="UserTitle" placeholder="职称">
                 </div>
                 <div class="form-group row">
                   <div class="col-sm-6 mb-3 mb-sm-0">
-                    <input type="password" class="form-control form-control-user" id="UserInputPassword"
-                      placeholder="输入密码">
+                    <input name="email" type="text" class="form-control form-control-user" id="email" placeholder="邮箱地址" required>
                   </div>
                   <div class="col-sm-6">
-                    <input type="password" class="form-control form-control-user" id="UserRepeatPassword"
-                      placeholder="重复密码">
+                    <input name="mobile" type="text" class="form-control form-control-user" id="mobile" placeholder="联系方式" required>
                   </div>
                 </div>
-                <a href="login.html" class="btn btn-primary btn-user btn-block">
-                  注册账户
-                </a>
+                <div class="form-group row">
+                  <div class="col-sm-6 mb-3 mb-sm-0">
+                    <input name="organization" type="text" class="form-control form-control-user" id="organization" placeholder="组织" required>
+                  </div>
+                  <div class="col-sm-6">
+                    <input name="position" type="text" class="form-control form-control-user" id="position" placeholder="职位" required>
+                  </div>
+                </div>
+                <div class="form-group">
+                    <input name="password" type="password" class="form-control form-control-user" id="password" placeholder="密码" required>
+                </div>
+                <button class="btn btn-primary btn-user btn-block" type="submit">注册账户</button>
+                {% csrf_token %}
               </form>
               <hr>
               <div class="text-center">
@@ -90,14 +83,14 @@
   </div>
 
   <!-- Bootstrap core JavaScript-->
-  <script src="vendor/jquery/jquery.min.js"></script>
-  <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="{% static 'vendor/jquery/jquery.min.js' %}"></script>
+  <script src="{% static 'vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
 
   <!-- Core plugin JavaScript-->
-  <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+  <script src="{% static 'vendor/jquery-easing/jquery.easing.min.js' %}"></script>
 
   <!-- Custom scripts for all pages-->
-  <script src="js/sb-admin-2.min.js"></script>
+  <script src="{% static 'js/sb-admin-2.min.js' %}"></script>
 
 </body>
 

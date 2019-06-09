@@ -31,3 +31,4 @@ urlpatterns = [
 
     url(r'^supplied/', include('supplied.urls',namespace="supplied")),
 ]
+

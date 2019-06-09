@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+{% block title %}物资外借申请表{% endblock %}
+{% block subtitle %}{% endblock %}
+{% block content %}
+    <div id="content">
+        <!-- /.container-fluid -->
+
+        <div class="row">
+          <div class="col-lg-1"></div>
+          <div class="col-lg-10">
+            <!-- Brand Buttons -->
+            <div class="card shadow mb-4">
+              <div class="card-header py-3">
+                <h6 class="m-0 font-weight-bold text-primary">物资外借申请表</h6>
+              </div>
+              <div class="card-body">
+                  <h5>{{ supplied.name }}</h5>
+                  <form action="{% url 'supplied:submit' %}" method="post">
+                      <div class="container" style="padding:2em 0;">
+                          <!--<h2>请填写正确的信息</h2>-->
+                          <input name="supplied_id" type="hidden" value="{{ supplied.id }}" required>
+                          <div class="form-group floating-control-group">
+                              <label for="specification">规格</label>
+                              <input name="specification" type="text" id="spec_id" class="form-control" placeholder="规格">
+                          </div>
+                          <div class="form-group floating-control-group">
+                              <label for="number">数量</label>
+                              <input name="number" type="text" id="number_id" class="form-control" placeholder="数量">
+                          </div>
+                          <!-- TODO: 借出日期和还回日期：日期选择器 -->
+                          <div class="form-group floating-control-group">
+                              <label for="lend_time">借用时间</label>
+                              <input type="text" id="lend_time_id" name="lend_time" class="form-control" required>
+                          </div>
+                          <div class="form-group floating-control-group">
+                              <label for="return_time">归还时间</label>
+                              <input type="text" id="return_time_id" name="return_time"class="form-control" required>
+                          </div>
+                          <button type="submit" class="btn btn-primary">提交</button>
+                      </div>
+                      {% csrf_token %}
+                  </form>
+              </div>
+            </div>
+
+          </div>
+
+
+        </div>
+
+      </div>
+{% endblock %}

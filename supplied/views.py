@@ -12,7 +12,7 @@ class LendTableView(View):
         supplied = SuppliedInfo.objects.get(id=int(supplied_id))
 
         if request.user.is_authenticated():
-            return render(request,'LendTable.html',{"supplied":supplied})
+            return render(request, 'LendTable.html', {"supplied":supplied})
         else:
             return render(request,"index.html",{})
 
@@ -50,23 +50,17 @@ class SuppliedInfoView(View):
 
 class LendListView(View):
     def get(self,request):
-        all_list = SuppliedInfo.objects.filter(is_lend=1)
+        is_lend = request.GET.get('is_lend','')
+        all_list = SuppliedInfo.objects.filter(is_lend=is_lend)
         return render(request,'LendList.html',{
-            "all_list":all_list
+            "all_list":all_list,
         })
 
 
 class CheckedView(View):
     def get(self,request):
-        all_list = SuppliedLend.objects.filter(is_check=1)
+        is_check = request.GET.get('is_check',"")
+        all_list = SuppliedLend.objects.filter(is_check=is_check)
         return render(request,'checklist.html',{
-            "all_list":all_list
-        })
-
-
-class NotCheckedView(View):
-    def get(self,request):
-        all_list = SuppliedLend.objects.filter(is_check=0)
-        return render(request,'notchecklist.html',{
             "all_list":all_list
         })

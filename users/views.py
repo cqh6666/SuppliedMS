@@ -81,4 +81,4 @@ class AddCommentView(View):
 
 class tableView(View):
     def get(self,request):
-        return render(request,"table.html",{})
+        return render(request, "LendTable.html", {})

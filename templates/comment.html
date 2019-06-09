@@ -1,0 +1,71 @@
+{% extends 'base.html' %}
+{% block title %}物资外借平台首页{% endblock %}
+{% block subtitle %}用户留言{% endblock %}
+{% block  click%}
+
+{% endblock %}
+{% block content %}
+    <div class="row" >
+
+        {% for comment in all_comments %}
+            <div class="col-4">
+                <div class="card shadow mb-4">
+                    <!-- Card Header - Accordion -->
+                    <a data-target="#collapse_{{ comment.id }}" class="d-block card-header py-3" data-toggle="collapse" role="button">
+                        <h5 class="m-0 text-primary">
+                            {{ comment.user.username }}
+                        </h5>
+                        <span style="font-size:13px;color:darkgrey">[{{ comment.add_time }}]</span>
+                    </a>
+                    <!-- Card Content - Collapse -->
+                    <div class="collapse in" id="collapse_{{ comment.id }}">
+                        <div class="card-body">
+                            {{ comment.comments }}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+
+        <div class="col-4">
+            <div class="card shadow mb-4">
+                <span class="card-header py-3">
+                  我要留言
+                </span>
+
+                <div class="card-body">
+                    <input class="col-8" type="text" id="content_id" value=""/>
+                    <button href="#" id="addComment" class="d-none d-sm-inline-block btn btn-sm btn-success shadow-sm">
+                        <i class="fas fa-download fa-sm text-white-50"></i> 发表评论
+                    </button>
+                </div>
+              </div>
+        </div>
+
+    </div>
+{% endblock %}
+
+{% block custom_js %}
+<script src="http://apps.bdimg.com/libs/jquery/1.11.1/jquery.min.js"></script>
+<script>
+    $("#addComment").click(function(){
+        var content = $("#content_id").val()
+        console.log(content)
+        $.ajax({
+            url: '{% url 'addComment' %}',
+            type: "POST",
+            data: {
+                csrfmiddlewaretoken: '{{ csrf_token }}',
+                content:content
+            },
+            success:function(data){
+                if(data.status == 'success'){
+                    window.location.reload()
+                }else if(data.status =='fail'){
+                    alet('有错误')
+                }
+            }
+        })
+        })
+</script>
+{% endblock %}
