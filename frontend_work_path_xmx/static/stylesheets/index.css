@@ -1,0 +1,75 @@
+body {
+    background-color: #f5f5f5;
+}
+
+.banner {
+    width: 100%;
+}
+
+#site-banner {
+    color: blue;
+    height: 15%;
+    padding: 2% 2%;
+    background-color: #bdd8c8;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+.sidebar {
+    color: white;
+    margin: 0;
+    padding: 2%;
+    width: 300px;
+    background-color: #416e6d;
+    position: fixed;
+    height: 100%;
+    overflow: auto;
+}
+
+.sidebar a {
+    display: block;
+    color: white;
+    padding: 16px;
+    text-decoration: none;
+}
+
+.sidebar a.active {
+    background-color: #4CAF50;
+    color: black;
+}
+
+.sidebar a:hover:not(.active) {
+    background-color: #bdd8c8;
+    color: black;
+}
+
+div.content {
+    margin-left: 200px;
+    padding: 1px 16px;
+    height: 1000px;
+}
+
+@media screen and (max-width: 700px) {
+    .sidebar {
+        width: 100%;
+        height: auto;
+        position: relative;
+    }
+    .sidebar a {
+        float: left;
+    }
+    div.content {
+        margin-left: 0;
+    }
+}
+
+@media screen and (max-width: 400px) {
+    .sidebar a {
+        text-align: center;
+        float: none;
+    }
+}
+
+#MessageBoard {
+    padding: 2% 2%;
+}
