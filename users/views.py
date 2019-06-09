@@ -73,3 +73,8 @@ class AddCommentView(View):
             comment.comments = content
             comment.save()
             return JsonResponse({"status":"success","msg":"评论成功"})
+
+
+class tableView(View):
+    def get(self,request):
+        return render(request,"table.html",{})

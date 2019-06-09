@@ -18,7 +18,7 @@ from django.conf.urls import url,include
 from django.contrib import admin
 import xadmin
 
-from users.views import IndexView,LoginView,RegisterView,CommentView,AddCommentView
+from users.views import IndexView,LoginView,RegisterView,CommentView,AddCommentView,tableView
 urlpatterns = [
     url(r'^xadmin/', xadmin.site.urls),
 
@@ -27,6 +27,7 @@ urlpatterns = [
     url(r'^register/', RegisterView.as_view(),name="register"),
     url(r'^Comment/',CommentView.as_view(),name="Comment"),
     url(r'^addComment',AddCommentView.as_view(),name="addComment"),
+    url(r'^table/',tableView.as_view(),name="table"),
 
     url(r'^supplied/', include('supplied.urls',namespace="supplied")),
 ]
