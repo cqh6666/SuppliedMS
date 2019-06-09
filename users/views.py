@@ -5,6 +5,7 @@ from django.contrib.auth.hashers import make_password
 from django.contrib.auth import authenticate,login
 from django.http import JsonResponse
 
+from supplied.models import SuppliedInfo
 from .models import UserProfile,UserComment
 from .forms import RegisterForm,LoginForm
 # Create your views here.
@@ -12,7 +13,10 @@ from .forms import RegisterForm,LoginForm
 
 class IndexView(View):
     def get(self,request):
-        return render(request,"index.html")
+        all_supplied = SuppliedInfo.objects.all()
+        return render(request, 'index.html', {
+            "all_supplied": all_supplied,
+        })
 
 
 class LoginView(View):
