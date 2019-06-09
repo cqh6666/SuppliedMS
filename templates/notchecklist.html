@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+{% load staticfiles %}
+<head>
+    <meta charset="UTF-8">
+    <title>SuppliedInfo</title>
+</head>
+<body>
+<h1>未通过的申请表</h1>
+    {% for list in all_list %}
+        <h4>
+            <a href="">{{ list.name }}</a>
+        </h4>
+    {% endfor %}
+</body>
+</html>

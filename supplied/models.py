@@ -26,24 +26,22 @@ class SuppliedInfo(models.Model):
         return self.name
 
 
-class LendTable(models.Model):
+class SuppliedLend(models.Model):
     """
     物资借用详情表-借用时在页面填写，存储借用的详细情况
     """
-    name = models.ForeignKey(SuppliedInfo,verbose_name=u"借用物资名称")
-    specification = models.CharField(verbose_name="借用规格",max_length=5)
-    number = models.IntegerField(verbose_name=u"借用数量",default=1)
+    name = models.ForeignKey(SuppliedInfo,verbose_name=u"借用物资名称",blank=True,on_delete=models.CASCADE)
+    specification = models.CharField(verbose_name="借用规格", max_length=5)
+    number = models.IntegerField(verbose_name=u"借用数量", default=1)
     lend_time = models.DateTimeField(default=datetime.now, verbose_name=u"借用时间")
     return_time = models.DateTimeField(default=datetime.now, verbose_name=u"归还时间")
-    organization = models.CharField(verbose_name="借用组织",max_length=50)
-    user = models.ForeignKey(UserProfile,verbose_name=u"用户User")
-    mobile = models.CharField(verbose_name="联系方式",max_length=11)
+    user = models.ForeignKey(UserProfile,verbose_name=u"用户User",blank=True,on_delete=models.CASCADE)
     submit_time = models.DateTimeField(default=datetime.now, verbose_name=u"提交时间")
-
+    is_check = models.BooleanField(verbose_name=u"是否通过",default=False)
 
     class Meta:
         verbose_name = "借用详情表"
         verbose_name_plural = verbose_name
 
     def __str__(self):
-        return self.name
+        return '{0} ( {1} ) [ checked:{2} ]'.format(self.name.name,self.user.username,self.is_check)

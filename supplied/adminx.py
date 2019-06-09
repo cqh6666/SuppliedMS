@@ -12,20 +12,15 @@
 """
 
 import xadmin
-from .models import SuppliedInfo,LendTable
+from .models import SuppliedInfo,SuppliedLend
 
 
 class SuppliedInfoAdmin(object):
     pass
 
-
 class SuppliedLendAdmin(object):
     pass
 
 
-class LendTableAdmin(object):
-    pass
-
-
 xadmin.site.register(SuppliedInfo,SuppliedInfoAdmin)
-xadmin.site.register(LendTable,LendTableAdmin)
+xadmin.site.register(SuppliedLend,SuppliedLendAdmin)

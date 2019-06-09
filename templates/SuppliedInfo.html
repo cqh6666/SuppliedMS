@@ -6,8 +6,16 @@
     <title>SuppliedInfo</title>
 </head>
 <body>
-{% for supplied in all_supplied %}
-    <h4><a href="{% url 'supplied:LendTable' supplied.id %}">{{ supplied.name }}</a></h4>
-{% endfor %}
+<h1>物资列表</h1>
+    {% for supplied in all_supplied %}
+        <h4>
+            {{ supplied.name }}
+{#            {% if is_staff %}#}
+{#                <span><input type="checkbox"#}
+{#                             {% ifequal supplied.is_lend 1 %}checked="checked"{% endifequal %}name="is_check"#}
+{#                             id="is_check"/></span>#}
+{#            {% endif %}#}
+        </h4>
+    {% endfor %}
 </body>
 </html>

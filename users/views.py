@@ -3,8 +3,9 @@ from django.shortcuts import render
 from django.views.generic.base import View
 from django.contrib.auth.hashers import make_password
 from django.contrib.auth import authenticate,login
+from django.http import JsonResponse
 
-from .models import UserProfile
+from .models import UserProfile,UserComment
 from .forms import RegisterForm,LoginForm
 # Create your views here.
 
@@ -45,3 +46,30 @@ class RegisterView(View):
             return render(request,"index.html",{"register_form":register_form})
         else:
             return render(request, "register.html",{"register_form":register_form})
+
+
+class CommentView(View):
+    """
+    显示所有评论
+    """
+    def get(self,request):
+        all_comments = UserComment.objects.all()
+        return render(request,"comment.html",{"all_comments":all_comments})
+
+
+class AddCommentView(View):
+    """
+    动态添加评论
+    """
+    def post(self,request):
+        content = request.POST.get('content')
+
+        if not request.user.is_authenticated():
+            return JsonResponse({ "status":"fail","msg":"用户未登录"})
+
+        if content:
+            comment = UserComment()
+            comment.user = request.user
+            comment.comments = content
+            comment.save()
+            return JsonResponse({"status":"success","msg":"评论成功"})

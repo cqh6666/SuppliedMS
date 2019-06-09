@@ -51,10 +51,19 @@
                     <h1>导航栏</h1>
                     <ul>
                         <li>
-                            <a href="#">查看当前可借物品</a>
+                            <a href="{% url 'supplied:LendList' %}">查看当前可借物品</a>
                         </li>
                         <li>
                             <a href="{% url 'supplied:SuppliedInfo' %}">物资列表</a>
+                        </li>
+                        <li>
+                            <a href="{% url 'Comment' %}">评论</a>
+                        </li>
+                        <li>
+                            <a href="{% url 'supplied:is_check' %}">已通过的申请表</a>
+                        </li>
+                        <li>
+                            <a href="{% url 'supplied:isn_check' %}">未通过的申请表</a>
                         </li>
                     </ul>
                 </div>

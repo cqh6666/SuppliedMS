@@ -18,13 +18,15 @@ from django.conf.urls import url,include
 from django.contrib import admin
 import xadmin
 
-from users.views import IndexView,LoginView,RegisterView
+from users.views import IndexView,LoginView,RegisterView,CommentView,AddCommentView
 urlpatterns = [
     url(r'^xadmin/', xadmin.site.urls),
 
     url(r'^$', IndexView.as_view(), name="index"),
     url(r'^login/', LoginView.as_view(),name="login"),
     url(r'^register/', RegisterView.as_view(),name="register"),
+    url(r'^Comment/',CommentView.as_view(),name="Comment"),
+    url(r'^addComment',AddCommentView.as_view(),name="addComment"),
 
     url(r'^supplied/', include('supplied.urls',namespace="supplied")),
 ]

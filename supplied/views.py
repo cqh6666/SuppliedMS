@@ -1,8 +1,9 @@
 from django.shortcuts import render
 from django.views.generic.base import View
 
-from .forms import LendTableForm
-from .models import SuppliedInfo,LendTable
+from .models import SuppliedInfo,SuppliedLend
+
+
 # Create your views here.
 
 
@@ -15,8 +16,6 @@ class LendTableView(View):
         else:
             return render(request,"index.html",{})
 
-
-
 class SubmitView(View):
     def post(self,request):
         supplied = SuppliedInfo.objects.get(id=int(request.POST.get('supplied_id')))
@@ -27,7 +26,7 @@ class SubmitView(View):
         user = request.user
 
         if supplied and user:
-            lend_table = LendTable()
+            lend_table = SuppliedLend()
             lend_table.name = supplied
             lend_table.specification = specification
             lend_table.number = number
@@ -45,5 +44,29 @@ class SuppliedInfoView(View):
     def get(self,request):
         all_supplied = SuppliedInfo.objects.all()
         return render(request,'SuppliedInfo.html',{
-            "all_supplied":all_supplied
+            "all_supplied":all_supplied,
+        })
+
+
+class LendListView(View):
+    def get(self,request):
+        all_list = SuppliedInfo.objects.filter(is_lend=1)
+        return render(request,'LendList.html',{
+            "all_list":all_list
+        })
+
+
+class CheckedView(View):
+    def get(self,request):
+        all_list = SuppliedLend.objects.filter(is_check=1)
+        return render(request,'checklist.html',{
+            "all_list":all_list
+        })
+
+
+class NotCheckedView(View):
+    def get(self,request):
+        all_list = SuppliedLend.objects.filter(is_check=0)
+        return render(request,'notchecklist.html',{
+            "all_list":all_list
         })

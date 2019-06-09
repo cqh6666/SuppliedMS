@@ -32,7 +32,7 @@ class UserComment(models.Model):
     定义用户评论表
     用户（外键）	留言内容 留言时间
     """
-    user = models.ForeignKey(UserProfile, verbose_name=u"用户")
+    user = models.ForeignKey(UserProfile,related_name='comment_user',verbose_name=u"用户")
     comments = models.CharField(max_length=200, verbose_name=u"评论")
     add_time = models.DateTimeField(default=datetime.now, verbose_name=u"添加时间")
 
