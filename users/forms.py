@@ -14,11 +14,11 @@ from django import forms
 from .models import UserProfile
 
 class LoginForm(forms.Form):
-    email = forms.CharField(required=True)
+    username = forms.CharField(required=True)
     password = forms.CharField(required=True,min_length=5)
 
 
 class RegisterForm(forms.ModelForm):
     class Meta:
         model = UserProfile
-        fields = ['username','college','mobile','email','organization','position','password']
+        fields = ['first_name','college','mobile','username','organization','position','password']

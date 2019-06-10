@@ -25,15 +25,15 @@
                           </div>
                           <div class="form-group floating-control-group">
                               <label for="number">数量</label>
-                              <input name="number" type="text" id="number_id" class="form-control" placeholder="数量">
+                              <input name="number" type="number" min="1" max="{{ supplied.number }}" id="number_id" class="form-control" placeholder="数量">
                           </div>
                           <!-- TODO: 借出日期和还回日期：日期选择器 -->
                           <div class="form-group floating-control-group">
-                              <label for="lend_time">借用时间</label>
+                              <label for="lend_time">借用时间 ( xxxx-xx-xx )</label>
                               <input type="text" id="lend_time_id" name="lend_time" class="form-control" required>
                           </div>
                           <div class="form-group floating-control-group">
-                              <label for="return_time">归还时间</label>
+                              <label for="return_time">归还时间 ( xxxx-xx-xx )</label>
                               <input type="text" id="return_time_id" name="return_time"class="form-control" required>
                           </div>
                           <button type="submit" class="btn btn-primary">提交</button>

@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 {% block title %}物资外借平台首页{% endblock %}
-{% block subtitle %}当前可借物资{% endblock %}
-{% block  click%}
+{% block subtitle %}{{ subtitle }}{% endblock %}
+{% block  click %}
     <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">
         <i class="fas fa-download fa-sm text-white-50"></i> 点击卡片申请
     </a>
@@ -9,26 +9,26 @@
 {% block content %}
     <div class="row">
 
-            <!-- Earnings (Monthly) Card Example -->
-          {% for supplied in all_list %}
-              <div class="col-xl-3 col-md-6 mb-4">
-                  <a href="{% url 'supplied:LendTable' supplied.id %}" style="text-decoration: none">
-                      <div class="card border-left-primary shadow h-100 py-2">
-                <div class="card-body">
-                  <div class="row no-gutters align-items-center">
-                    <div class="col mr-2">
-                      <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">{{ supplied.name }}({{ supplied.unit }})</div>
-                      <div class="h5 mb-0 font-weight-bold text-gray-800">￥{{ supplied.price }}</div>
+        <!-- Earnings (Monthly) Card Example -->
+        {% for supplied in all_list %}
+            <div class="col-xl-3 col-md-6 mb-4">
+                <a href="{% url 'supplied:LendTable' supplied.id %}" style="text-decoration: none">
+                    <div class="card border-left-primary shadow h-100 py-2">
+                        <div class="card-body">
+                            <div class="row no-gutters align-items-center">
+                                <div class="col mr-2">
+                                    <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">{% ifequal is_lend '1' %}可借: {{ supplied.number }}{% endifequal %}</div>
+                                    <div class="h5 mb-0 font-weight-bold text-gray-800">{{ supplied.name }} ( {{ supplied.unit }} )</div>
+                                </div>
+                                <div class="col-auto">
+                                    <i class="fas fa-dollar-sign fa-2x text-gray-300">{{ supplied.price }}</i>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                    <div class="col-auto">
-                      <i class="fas fa-calendar fa-2x text-gray-300"></i>
-                    </div>
-                  </div>
-                </div>
-              </div>
-                  </a>
-              </div>
-          {% endfor %}
+                </a>
+            </div>
+        {% endfor %}
 
-          </div></div>
+    </div></div>
 {% endblock %}
