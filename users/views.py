@@ -13,6 +13,10 @@ from .forms import RegisterForm,LoginForm
 # Create your views here.
 
 
+class shenheView(View):
+    def get(self,request):
+        return render(request,'shenhe.html')
+
 class IndexView(View):
     def get(self,request):
         all_supplied = SuppliedInfo.objects.all()
