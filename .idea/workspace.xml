@@ -1,21 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="2aac72fd-3889-4d2c-950b-517e8cd92590" name="Default Changelist" comment="把前端页面整合到工程之中，稍微改了下table.html">
-      <change afterPath="$PROJECT_DIR$/supplied/migrations/0005_auto_20190617_1727.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/supplied/migrations/0006_auto_20190617_1741.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SuppliedMS/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/SuppliedMS/urls.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/supplied/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/supplied/models.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/supplied/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/supplied/urls.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/supplied/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/supplied/views.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/PersonalInfo.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/PersonalInfo.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/base.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/base.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/checklist.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/checklist.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/ok.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/ok.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/shenhe.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/shenhe.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/users/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/users/views.py" afterDir="false" />
-    </list>
+    <list default="true" id="2aac72fd-3889-4d2c-950b-517e8cd92590" name="Default Changelist" comment="把前端页面整合到工程之中，稍微改了下table.html" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -151,8 +137,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/templates/shenhe.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1416">
-              <caret line="59" lean-forward="true" selection-start-line="59" selection-end-line="59" />
+            <state relative-caret-position="336">
+              <caret line="14" column="35" selection-start-line="14" selection-start-column="35" selection-end-line="14" selection-end-column="35" />
             </state>
           </provider>
         </entry>
@@ -849,8 +835,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/templates/shenhe.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1416">
-          <caret line="59" lean-forward="true" selection-start-line="59" selection-end-line="59" />
+        <state relative-caret-position="336">
+          <caret line="14" column="35" selection-start-line="14" selection-start-column="35" selection-end-line="14" selection-end-column="35" />
         </state>
       </provider>
     </entry>
