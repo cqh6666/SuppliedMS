@@ -37,11 +37,12 @@ class SuppliedLend(models.Model):
     return_time = models.DateTimeField(default=datetime.now, verbose_name=u"归还时间")
     user = models.ForeignKey(UserProfile,verbose_name=u"用户User",blank=True,on_delete=models.CASCADE)
     submit_time = models.DateTimeField(default=datetime.now, verbose_name=u"提交时间")
-    is_check = models.BooleanField(verbose_name=u"是否通过",default=False)
+    is_check = models.BooleanField(verbose_name=u"是否已审核",default=False)
+    is_lend = models.BooleanField(verbose_name=u"是否可借",default=False)
 
     class Meta:
         verbose_name = "借用详情表"
         verbose_name_plural = verbose_name
 
     def __str__(self):
-        return '{0} ( {1} ) [ checked:{2} ]'.format(self.name.name,self.user.username,self.is_check)
+        return '{0} ( {1} ) [ checked:{2} ] [ lend:{3} ]'.format(self.name.name,self.user.username,self.is_check,self.id_lend)

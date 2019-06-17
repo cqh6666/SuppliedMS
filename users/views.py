@@ -13,10 +13,6 @@ from .forms import RegisterForm,LoginForm
 # Create your views here.
 
 
-class shenheView(View):
-    def get(self,request):
-        return render(request,'shenhe.html')
-
 class IndexView(View):
     def get(self,request):
         all_supplied = SuppliedInfo.objects.all()
@@ -122,3 +118,11 @@ class AddCommentView(View):
 class tableView(View):
     def get(self,request):
         return render(request, "LendTable.html", {})
+
+
+class UserShow(View):
+    def get(self,request):
+        if not request.user.is_authenticated():
+            return render(request,"error.html",{"msg":"用户未登录"})
+        user = request.user
+        return render(request,"PersonalInfo.html",{"all_user":user})

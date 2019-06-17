@@ -97,12 +97,13 @@
           <span>个人</span>
         </a>
         <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
-          <div class="bg-white py-2 collapse-inner rounded">
-            <h6 class="collapse-header">账号操作</h6>
-            <a class="collapse-item" href="{% url 'login' %}">登录</a>
-            <a class="collapse-item" href="{% url 'register' %}">注册</a>
-            <a class="collapse-item" href="{% url 'logout' %}">退出</a>
-          </div>
+            <div class="bg-white py-2 collapse-inner rounded">
+                <h6 class="collapse-header">账号操作</h6>
+                <a class="collapse-item" href="{% url 'login' %}">登录</a>
+                <a class="collapse-item" href="{% url 'register' %}">注册</a>
+                <a class="collapse-item" href="{% url 'UserShow' %}">个人信息</a>
+                <a class="collapse-item" href="{% url 'logout' %}">退出</a>
+            </div>
         </div>
       </li>
 
@@ -118,12 +119,17 @@
             </div>
             <!-- Nav Item - Tables -->
             <li class="nav-item">
-                <a class="nav-link" href="{% url 'supplied:checklist' %}?is_check=0">
+                <a class="nav-link" href="{% url 'supplied:shenhe' %}">
+                    <i class="fas fa-fw fa-table"></i>
+                    <span>审核申请表</span></a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'supplied:checklist' %}?is_lend=0">
                     <i class="fas fa-fw fa-table"></i>
                     <span>查看未借出记录</span></a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="{% url 'supplied:checklist' %}?is_check=1">
+                <a class="nav-link" href="{% url 'supplied:checklist' %}?is_lend=1">
                     <i class="fas fa-fw fa-table"></i>
                     <span>查看借出记录</span></a>
             </li>
@@ -430,12 +436,10 @@
 
               {% block content %}{% endblock %}
 
-
-              <!-- /.container-fluid -->
-              <div class="row">
-                  <div class="col-lg-1"></div>
-              </div>
           </div>
+              <!-- /.container-fluid -->
+
+
       <div class="container-fluid"></div>
       <!-- End of Main Content -->
 
@@ -443,7 +447,7 @@
       <footer class="sticky-footer bg-white">
         <div class="container my-auto">
           <div class="copyright text-center my-auto">
-            <span>Copyright &copy; Your Website 2019</span>
+            <span>Copyright &copy; 2019.06</span>
           </div>
         </div>
       </footer>

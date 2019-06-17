@@ -2,17 +2,13 @@
 {% block title %}物资外借平台首页{% endblock %}
 {% block subtitle %}{{ subtitle }}{% endblock %}
 {% block  click%}
-    <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">
-        <i class="fas fa-download fa-sm text-white-50"></i> 点击卡片申请
-    </a>
 {% endblock %}
 {% block content %}
     <div class="row">
 
             <!-- Earnings (Monthly) Card Example -->
           {% for supplied in all_list %}
-              <div class="col-xl-3 col-md-6 mb-4">
-                  <a href="#">
+              <div class="col-xl-4 col-md-6 mb-4">
                       <div class="card border-left-primary shadow h-100 py-2">
                           <div class="card-body">
                               <div class="row no-gutters align-items-center">
@@ -26,7 +22,6 @@
                               </div>
                           </div>
                       </div>
-                  </a>
               </div>
           {% endfor %}
 

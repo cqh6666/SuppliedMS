@@ -2,6 +2,7 @@ import time
 
 from django.shortcuts import render
 from django.views.generic.base import View
+from django.http import JsonResponse
 
 from .models import SuppliedInfo,SuppliedLend
 
@@ -68,13 +69,35 @@ class LendListView(View):
 
 class CheckedView(View):
     def get(self,request):
-        is_check = request.GET.get('is_check',"")
+        is_lend = int(request.GET.get('is_lend',""))
         subtitle = "当前已外借的记录"
-        if is_check == "0":
+        if is_lend == 0:
             subtitle = "当前未外借的记录"
 
-        all_list = SuppliedLend.objects.filter(is_check=is_check)
+        all_list = SuppliedLend.objects.filter(is_lend=is_lend)
         return render(request,'checklist.html',{
             "all_list":all_list,
             "subtitle":subtitle
         })
+
+
+class CheckView(View):
+    def get(self,request):
+        """查看未审核的申请表"""
+        all_table = SuppliedLend.objects.filter(is_check=0)
+        return render(request,'shenhe.html',{"all_table":all_table})
+
+
+class CheckTable(View):
+    def post(self,request):
+        """ajax请求 审核申请表同意或拒绝"""
+        is_lend = int(request.POST.get('is_lend'))
+        this_id = int(request.POST.get('this_id'))
+        if this_id:
+            SuppliedLend.objects.filter(id=this_id).update(
+                is_check=1,
+                is_lend=is_lend
+            )
+            return JsonResponse({"status": "success", "msg": "完成申请"})
+        else:
+            return JsonResponse({"status": "fail", "msg": "出现错误"})

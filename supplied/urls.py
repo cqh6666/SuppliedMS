@@ -12,7 +12,7 @@
 """
 
 from django.conf.urls import url, include
-from .views import LendTableView,SuppliedInfoView,SubmitView,LendListView,CheckedView
+from .views import LendTableView,SuppliedInfoView,SubmitView,LendListView,CheckedView,CheckView,CheckTable
 
 urlpatterns = [
     #用户信息
@@ -20,5 +20,9 @@ urlpatterns = [
     url(r'^submit/',SubmitView.as_view(),name="submit"),
     url(r'^info/$',SuppliedInfoView.as_view(),name="SuppliedInfo"),
     url(r'^lendlist/$',LendListView.as_view(),name="LendList"),
-    url(r'^checklist/',CheckedView.as_view(),name="checklist"),
+    url(r'^checklist/$',CheckedView.as_view(),name="checklist"),
+    url(r'^shenhe/$', CheckView.as_view(), name="shenhe"),
+    url(r'^CheckTable/$', CheckTable.as_view(), name="CheckTable"),
+
+
 ]

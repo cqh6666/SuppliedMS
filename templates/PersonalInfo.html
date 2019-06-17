@@ -1,6 +1,6 @@
 {% extends 'base.html' %}
 {% block title %}查看个人信息{% endblock %}
-{% block subtitle %}用户：zhangsan{% endblock %}
+{% block subtitle %}用户：{{ all_user.username }}{% endblock %}
 {% block content %}
 <div id="content">
     <div class="row">
@@ -16,30 +16,31 @@
                 <tbody>
                     <tr>
                         <td>姓名</td>
-                        <td>张三</td>
+                        <td>{{ all_user.first_name }}</td>
                     </tr>
                     <tr>
                         <td>学院</td>
-                        <td>计算机学院</td>
+                        <td>{{ all_user.college }}</td>
                     </tr>
                     <tr>
                         <td>联系方式</td>
-                        <td>13600001234</td>
+                        <td>{{ all_user.mobile }}</td>
                     </tr>
                     <tr>
                         <td>邮箱</td>
-                        <td>zhangsan@example.com</td>
+                        <td>{{ all_user.email }}</td>
                     </tr>
                     <tr>
                         <td>组织</td>
-                        <td>学生会</td>
+                        <td>{{ all_user.organization }}</td>
                     </tr>
                     <tr>
                         <td>职务</td>
-                        <td>干事</td>
+                        <td>{{ all_user.position }}</td>
                     </tr>
                 </tbody>
             </table>
         </div>
     </div>
 </div>
+{% endblock %}
