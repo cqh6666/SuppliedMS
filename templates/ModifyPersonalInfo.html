@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+{% block title %}修改个人信息{% endblock %}
+{% block subtitle %}{% endblock %}
+{% block content %}
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-sm-1"></div>
+        <div class="col-sm-10">
+            <h2>修改个人信息</h2>
+            <form action="#" method="POST">
+                <div class="container" style="padding:2em 0;">
+                    <div class="form-group floating-control-group">
+                        <label for="first_name">姓名</label>
+                        <input name="first_name" type="text" class="form-control form-control-user" id="first_name">
+                    </div>
+                    <div class="form-group floating-control-group">
+                        <label for="college">学院</label>
+                        <input name="college" type="text" class="form-control form-control-user" id="college">
+                    </div>
+                    <div class="form-group floating-control-group">
+                        <label for="username">邮箱地址</label>
+                        <input name="username" type="email" class="form-control form-control-user" id="email">
+                    </div>
+                    <div class="form-group floating-control-group">
+                        <label for="">联系方式</label>
+                        <input name="mobile" type="text" class="form-control form-control-user" id="mobile">
+                    </div>
+                    <div class="form-group floating-control-group">
+                        <label for="organization">组织</label>
+                        <input name="organization" type="text" class="form-control form-control-user" id="organization">
+                    </div>
+                    <div class="form-group floating-control-group">
+                        <label for="position">职位</label>
+                        <input name="position" type="text" class="form-control form-control-user" id="position">
+                    </div>
+                    <div class="form-group floating-control-group">
+                        <label for="confirm_password">确认密码</label>
+                        <input name="confirm_password" type="password" class="form-control form-control-user"
+                            id="confirm_password" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary">提交</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+{% end block %}
