@@ -1,6 +1,11 @@
 {% extends 'base.html' %}
 {% block title %}查看个人信息{% endblock %}
 {% block subtitle %}用户：{{ all_user.username }}{% endblock %}
+{% block click %}
+    <a href="{% url 'UserModify' %}" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">
+        <i class="fas fa-download fa-sm text-white-50"></i> 我要修改信息
+    </a>
+{% endblock %}
 {% block content %}
 <div id="content">
     <div class="row">

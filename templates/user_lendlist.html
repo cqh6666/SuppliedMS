@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+{% block title %}个人借出记录{% endblock %}
+{% block subtitle %}{{ subtitle }}{% endblock %}
+{% block  click%}
+{% endblock %}
+{% block content %}
+    <div class="row">
+
+        <!-- Earnings (Monthly) Card Example -->
+          {% for lendtable in all_list %}
+              <div class="col-xl-4 col-md-6 mb-4">
+                      <div class="card border-left-primary shadow h-100 py-2">
+                          <div class="card-body">
+                              <div class="row no-gutters align-items-center">
+                                  <div class="col mr-2">
+                                      <div class="h5 mb-0 font-weight-bold text-gray-800">
+                                          {{ lendtable.name }}
+                                          <a href="{% url 'supplied:lendtable_info' lendtable.id %}"><i class="fas fa-info-circle text-lg"></i></a>
+                                      </div>
+                                  </div>
+                                  <div class="col-auto">
+                                      {% if lendtable.is_check %}
+                                          <i class="fas fa-clipboard-list fa-2x text-success"></i>
+                                      {% else %}
+                                          <i class="fas fa-clipboard-list fa-2x text-gray-300"></i>
+                                      {% endif %}
+
+                                  </div>
+                              </div>
+                          </div>
+                      </div>
+              </div>
+          {% endfor %}
+
+          </div></div>
+{% endblock %}

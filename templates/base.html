@@ -85,6 +85,7 @@
         <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
             <h6 class="collapse-header">operation</h6>
+            <a class="collapse-item" href="{% url 'supplied:UserLendList' %}">查看借用记录</a>
             <a class="collapse-item" href="{% url 'supplied:LendList' %}?is_lend=1">填写申请表</a>
             <a class="collapse-item" href="{% url 'Comment' %}">用户留言</a>
           </div>
@@ -102,6 +103,7 @@
                 <a class="collapse-item" href="{% url 'login' %}">登录</a>
                 <a class="collapse-item" href="{% url 'register' %}">注册</a>
                 <a class="collapse-item" href="{% url 'UserShow' %}">个人信息</a>
+                <a class="collapse-item" href="{% url 'UserModify' %}">修改个人信息</a>
                 <a class="collapse-item" href="{% url 'logout' %}">退出</a>
             </div>
         </div>
@@ -133,6 +135,11 @@
                     <i class="fas fa-fw fa-table"></i>
                     <span>查看借出记录</span></a>
             </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'user_auth' %}">
+                    <i class="fas fa-fw fa-table"></i>
+                    <span>用户授权管理</span></a>
+            </li>
         {% endif %}
 
       <!-- Divider -->
@@ -159,6 +166,21 @@
           <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
             <i class="fa fa-bars"></i>
           </button>
+
+            <!-- Topbar Search -->
+            <form action="{% url 'search' %}" method="get" class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
+                <div class="input-group">
+                    <input type="text" name="keyword" class="form-control bg-light border-0 small" placeholder="搜索物资..."
+                           aria-label="Search" aria-describedby="basic-addon2">
+                    <div class="input-group-append">
+                        <button class="btn btn-primary" type="submit">
+                            <i class="fas fa-search fa-sm"></i>
+                        </button>
+                    </div>
+                </div>
+                {% csrf_token %}
+            </form>
+
 
           <!-- Topbar Navbar -->
           {% if user.is_authenticated %}

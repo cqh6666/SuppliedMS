@@ -3,7 +3,7 @@
 {% block subtitle %}{{ subtitle }}{% endblock %}
 {% block  click %}
     <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">
-        <i class="fas fa-download fa-sm text-white-50"></i> 点击卡片申请
+        <i class="fas fa-download fa-sm text-white-50"></i> 点击卡片的名字申请
     </a>
 {% endblock %}
 {% block content %}
@@ -12,21 +12,28 @@
         <!-- Earnings (Monthly) Card Example -->
         {% for supplied in all_list %}
             <div class="col-xl-3 col-md-6 mb-4">
-                <a href="{% url 'supplied:LendTable' supplied.id %}" style="text-decoration: none">
+
                     <div class="card border-left-primary shadow h-100 py-2">
                         <div class="card-body">
                             <div class="row no-gutters align-items-center">
                                 <div class="col mr-2">
-                                    <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">{% ifequal is_lend '1' %}可借: {{ supplied.number }}{% endifequal %}</div>
-                                    <div class="h5 mb-0 font-weight-bold text-gray-800">{{ supplied.name }} ( {{ supplied.unit }} )</div>
+                                    <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
+                                        {% ifequal is_lend '1' %}可借 - {{ supplied.number }} | {% endifequal %}
+                                         详情 - <a href="{% url 'supplied:SuppliedInfoShow' supplied.id %}"><i class="fas fa-info-circle text-lg"></i></a>
+                                    </div>
+                                    <a href="{% url 'supplied:LendTable' supplied.id %}" style="text-decoration: none">
+                                    <div class="h5 mb-0 font-weight-bold text-gray-800">{{ supplied.name }}</div>
+                                    </a>
                                 </div>
+
                                 <div class="col-auto">
+
                                     <i class="fas fa-dollar-sign fa-2x text-gray-300">{{ supplied.price }}</i>
                                 </div>
                             </div>
                         </div>
                     </div>
-                </a>
+
             </div>
         {% endfor %}
 

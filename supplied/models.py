@@ -16,6 +16,7 @@ class SuppliedInfo(models.Model):
     specification = models.CharField(verbose_name="规格",max_length=5)
     number = models.IntegerField(verbose_name=u"数量",default=1)
     price = models.IntegerField(verbose_name=u"借用价格",default=0)
+    star = models.IntegerField(verbose_name=u"星级",default=5)
     is_lend = models.BooleanField(verbose_name=u"是否可借用",default=False)
 
     class Meta:
@@ -46,3 +47,20 @@ class SuppliedLend(models.Model):
 
     def __str__(self):
         return '{0} ( {1} ) [ checked:{2} ] [ lend:{3} ]'.format(self.name.name,self.user.username,self.is_check,self.id_lend)
+
+
+class SuppliedComment(models.Model):
+    """
+    物资评论表
+    """
+    name = models.ForeignKey(SuppliedInfo,verbose_name=u"物资名字",blank=True,on_delete=models.CASCADE)
+    user = models.ForeignKey(UserProfile, verbose_name=u"用户User", blank=True, on_delete=models.CASCADE)
+    comment = models.CharField(max_length=200, verbose_name=u"评论")
+    add_time = models.DateTimeField(default=datetime.now, verbose_name=u"添加时间")
+
+    class Meta:
+        verbose_name = "物资评论表"
+        verbose_name_plural = verbose_name
+
+    def __str__(self):
+        return '{0}{1}{2}'.format(self.name.name,self.star,self.comment)

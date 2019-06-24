@@ -9,13 +9,18 @@ from django.core.urlresolvers import reverse
 
 from supplied.models import SuppliedInfo
 from .models import UserProfile,UserComment
-from .forms import RegisterForm,LoginForm
+from .forms import RegisterForm,LoginForm,ModifyForm
 # Create your views here.
 
 
 class IndexView(View):
     def get(self,request):
-        all_supplied = SuppliedInfo.objects.all()
+        all_supplied = SuppliedInfo.objects.all().order_by("-is_lend")
+
+        search_keyword = request.GET.get('keyword',"")
+        if search_keyword:
+            all_supplied = SuppliedInfo.objects.filter(name=search_keyword).order_by("-is_lend")
+
         return render(request, 'index.html', {
             "all_supplied": all_supplied,
         })
@@ -126,3 +131,49 @@ class UserShow(View):
             return render(request,"error.html",{"msg":"用户未登录"})
         user = request.user
         return render(request,"PersonalInfo.html",{"all_user":user})
+
+
+class UserModify(View):
+    def get(self,request):
+        if not request.user.is_authenticated():
+            return render(request,"error.html",{"msg":"用户未登录"})
+        user = request.user
+        return render(request,"ModifyPersonalInfo.html",{"all_user":user})
+    def post(self,request):
+        modify_form = ModifyForm(request.POST)
+        if modify_form.is_valid():
+            user = request.user
+            user.first_name = request.POST.get('first_name')
+            user.college = request.POST.get('college')
+            user.mobile = request.POST.get('mobile')
+            user.organization = request.POST.get('organization')
+            user.position = request.POST.get('position')
+            user.save()
+            return render(request,"ok.html",{"msg":"成功修改个人信息"})
+        else:
+            return render(request,"error.html",{"msg":"修改个人信息出现了错误"})
+
+
+class UserAuthShow(View):
+    def get(self,request):
+        user = request.user
+        if not user.is_superuser:
+            return render(request,"error.html",{"msg":"权限不够,无法访问!"})
+        all_user = UserProfile.objects.filter(is_superuser=0)
+        return render(request,"UserAuth.html",{
+            "all_user":all_user
+        })
+
+
+class GrantUserAuth(View):
+    def post(self,request):
+        auth = int(request.POST.get('auth'))
+        this_id = int(request.POST.get('this_id'))
+
+        if this_id:
+            UserProfile.objects.filter(id=this_id).update(
+                is_staff=auth
+            )
+            return JsonResponse({"status":"success","msg":"授权成功"})
+        else:
+            return JsonResponse({"status": "fail", "msg": "授权出现错误"})

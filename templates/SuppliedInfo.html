@@ -1,0 +1,51 @@
+{% extends 'base.html' %}
+{% block title %}查看物资详情信息{% endblock %}
+{% block subtitle %}物资：{{ supplied.name }}{% endblock %}
+{% block  click %}
+    <a href="{% url 'supplied:LendTable' supplied.id %}" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">
+        <i class="fas fa-download fa-sm text-white-50"></i> 我要借这个物资
+    </a>
+{% endblock %}
+{% block content %}
+<div id="content">
+    <div class="row">
+        <div class="col-lg-1"></div>
+        <div class="col-lg-10">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th scope="col">条目</th>
+                        <th scope="col">内容</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>单位</td>
+                        <td>{{ supplied.unit }}</td>
+                    </tr>
+                    <tr>
+                        <td>规格</td>
+                        <td>{{ supplied.specification }}</td>
+                    </tr>
+                    <tr>
+                        <td>数量</td>
+                        <td>{{ supplied.number}}</td>
+                    </tr>
+                    <tr>
+                        <td>价格</td>
+                        <td>{{ supplied.price }}</td>
+                    </tr>
+                    <tr>
+                        <td>星级</td>
+                        <td>{{ supplied.star }}</td>
+                    </tr>
+                    <tr>
+                        <td>是否可借用</td>
+                        <td>{{ supplied.is_lend }}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+{% endblock %}

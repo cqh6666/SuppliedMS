@@ -101,3 +101,35 @@ class CheckTable(View):
             return JsonResponse({"status": "success", "msg": "完成申请"})
         else:
             return JsonResponse({"status": "fail", "msg": "出现错误"})
+
+
+class UserLendList(View):
+    def get(self,request):
+        """个人的借用记录"""
+        if not request.user.is_authenticated():
+            return render(request,"error.html",{"msg":"用户未登录"})
+        user = request.user
+        subtitle = "用户 [ "+user.username+" ] 的个人借用记录"
+        all_list = SuppliedLend.objects.filter(user=user)
+        return render(request,'user_lendlist.html',{
+            "all_list":all_list,
+            "subtitle":subtitle
+        })
+
+
+class SuppliedInfoShow(View):
+    def get(self,request,supplied_id):
+        supplied = SuppliedInfo.objects.get(id=int(supplied_id))
+
+        return render(request,"SuppliedInfo.html",{
+            "supplied":supplied
+        })
+
+
+class LendTableInfoShow(View):
+    def get(self,request,table_id):
+        lend_table = SuppliedLend.objects.get(id=int(table_id))
+
+        return render(request,"LendTableInfo.html",{
+            "lend_table":lend_table
+        })

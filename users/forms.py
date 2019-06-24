@@ -22,3 +22,9 @@ class RegisterForm(forms.ModelForm):
     class Meta:
         model = UserProfile
         fields = ['first_name','college','mobile','username','organization','position','password']
+
+
+class ModifyForm(forms.ModelForm):
+    class Meta:
+        model = UserProfile
+        fields = ['first_name','college','mobile','organization','position']

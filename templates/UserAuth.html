@@ -1,0 +1,81 @@
+{% extends 'base.html' %}
+{% block title %}用户权限管理{% endblock %}
+{% block subtitle %}您可授予普通用户管理员权限{% endblock %}
+{% block content %}
+<div class="row">
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col">用户ID</th>
+        <th scope="col">用户名</th>
+        <th scope="col">是否为管理员</th>
+        <th scope="col">更改权限</th>
+      </tr>
+    </thead>
+      <tbody>
+          {% for user in all_user %}
+              <tr>
+                  <th scope="row">{{ user.id }}</th>
+                  <td>{{ user.first_name }}</td>
+                  <td>{{ user.is_staff }}</td>
+                  <td>
+                      {% if user.is_staff %}
+                          <button class="btn btn-success btn-circle user_auth_1" id="user_{{ user.id }}">
+                              <i class="fas fa-check"></i>
+                          </button>
+                      {% else %}
+                          <button class="btn btn-secondary btn-circle user_auth_0" id="user_{{ user.id }}">
+
+                          </button>
+                      {% endif %}
+                  </td>
+              </tr>
+          {% endfor %}
+      </tbody>
+  </table>
+</div>
+{% endblock %}
+{% block custom_js %}
+<script src="http://apps.bdimg.com/libs/jquery/1.11.1/jquery.min.js"></script>
+<script>
+    $(".user_auth_1").click(function(){
+        var this_id = $(this).attr("id").substring(5)
+        $.ajax({
+            url: '{% url 'grant_user_auth' %}',
+            type: "POST",
+            data: {
+                csrfmiddlewaretoken: '{{ csrf_token }}',
+                this_id:this_id,
+                auth:0
+            },
+            success:function(data){
+                if(data.status == 'success'){
+                    window.location.reload()
+                }else if(data.status =='fail'){
+                    alert('有错误')
+                }
+            }
+        })
+        })
+
+    $(".user_auth_0").click(function () {
+        var this_id = $(this).attr("id").substring(5)
+        $.ajax({
+            url: '{% url 'grant_user_auth' %}',
+            type: "POST",
+            data: {
+                csrfmiddlewaretoken: '{{ csrf_token }}',
+                this_id: this_id,
+                auth:1
+            },
+            success: function (data) {
+                if (data.status == 'success') {
+                    window.location.reload()
+                } else if (data.status == 'fail') {
+                    alert('有错误')
+                }
+            }
+        })
+    })
+</script>
+{% endblock %}
