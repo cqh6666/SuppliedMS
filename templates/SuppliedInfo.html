@@ -37,7 +37,9 @@
                     </tr>
                     <tr>
                         <td>星级</td>
-                        <td>{{ supplied.star }}</td>
+                        <td>
+                            <span class="supplied_star"></span>
+                        </td>
                     </tr>
                     <tr>
                         <td>是否可借用</td>
@@ -48,4 +50,13 @@
         </div>
     </div>
 </div>
+    </div>
+{% endblock %}
+{% block custom_js %}
+    <script>
+        star = {{ supplied.star }}
+        for(var i = 0;i<star;i++){
+            $('.supplied_star').append("<i class=\"fa fa-star text-danger\"></i>")
+        }
+    </script>
 {% endblock %}

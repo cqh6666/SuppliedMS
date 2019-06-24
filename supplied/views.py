@@ -88,7 +88,7 @@ class CheckView(View):
         return render(request,'shenhe.html',{"all_table":all_table})
 
 
-class CheckTable(View):
+class CheckTableView(View):
     def post(self,request):
         """ajax请求 审核申请表同意或拒绝"""
         is_lend = int(request.POST.get('is_lend'))
@@ -103,13 +103,13 @@ class CheckTable(View):
             return JsonResponse({"status": "fail", "msg": "出现错误"})
 
 
-class UserLendList(View):
+class UserLendListView(View):
     def get(self,request):
         """个人的借用记录"""
         if not request.user.is_authenticated():
             return render(request,"error.html",{"msg":"用户未登录"})
         user = request.user
-        subtitle = "用户 [ "+user.username+" ] 的个人借用记录"
+        subtitle = "个人借用记录"
         all_list = SuppliedLend.objects.filter(user=user)
         return render(request,'user_lendlist.html',{
             "all_list":all_list,
@@ -117,7 +117,7 @@ class UserLendList(View):
         })
 
 
-class SuppliedInfoShow(View):
+class SuppliedInfoShowView(View):
     def get(self,request,supplied_id):
         supplied = SuppliedInfo.objects.get(id=int(supplied_id))
 
@@ -126,10 +126,19 @@ class SuppliedInfoShow(View):
         })
 
 
-class LendTableInfoShow(View):
+class LendTableInfoShowView(View):
     def get(self,request,table_id):
         lend_table = SuppliedLend.objects.get(id=int(table_id))
 
         return render(request,"LendTableInfo.html",{
+            "lend_table":lend_table
+        })
+
+
+class PrintTableView(View):
+    def get(self,request,table_id):
+        lend_table = SuppliedLend.objects.get(id=int(table_id))
+
+        return render(request,"PrintTable.html",{
             "lend_table":lend_table
         })

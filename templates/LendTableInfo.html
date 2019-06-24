@@ -1,6 +1,11 @@
 {% extends 'base.html' %}
 {% block title %}查看借用表详情信息{% endblock %}
 {% block subtitle %}物资：{{ lend_table.name.name }}{% endblock %}
+{% block click %}
+    <a href="{% url 'supplied:PrintTable' lend_table.id %}" target="_blank" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">
+        <i class="fas fa-download fa-sm text-white-50"></i> 我要打印申请表
+    </a>
+{% endblock %}
 {% block content %}
 <div id="content">
     <div class="row">

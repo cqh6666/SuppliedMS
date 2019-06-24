@@ -20,6 +20,8 @@ class IndexView(View):
         search_keyword = request.GET.get('keyword',"")
         if search_keyword:
             all_supplied = SuppliedInfo.objects.filter(name=search_keyword).order_by("-is_lend")
+            if not all_supplied:
+                return render(request,'error.html',{"msg":"找不到任何结果"})
 
         return render(request, 'index.html', {
             "all_supplied": all_supplied,
@@ -125,7 +127,7 @@ class tableView(View):
         return render(request, "LendTable.html", {})
 
 
-class UserShow(View):
+class UserShowView(View):
     def get(self,request):
         if not request.user.is_authenticated():
             return render(request,"error.html",{"msg":"用户未登录"})
@@ -133,7 +135,7 @@ class UserShow(View):
         return render(request,"PersonalInfo.html",{"all_user":user})
 
 
-class UserModify(View):
+class UserModifyView(View):
     def get(self,request):
         if not request.user.is_authenticated():
             return render(request,"error.html",{"msg":"用户未登录"})
@@ -154,7 +156,7 @@ class UserModify(View):
             return render(request,"error.html",{"msg":"修改个人信息出现了错误"})
 
 
-class UserAuthShow(View):
+class UserAuthShowView(View):
     def get(self,request):
         user = request.user
         if not user.is_superuser:
@@ -165,7 +167,7 @@ class UserAuthShow(View):
         })
 
 
-class GrantUserAuth(View):
+class GrantUserAuthView(View):
     def post(self,request):
         auth = int(request.POST.get('auth'))
         this_id = int(request.POST.get('this_id'))

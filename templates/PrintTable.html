@@ -1,36 +1,16 @@
-<!DOCTYPE html>
-
+<!doctype html>
+<html lang="en">
+{% load staticfiles %}
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>打印申请表</title>
-    <style>
-        h1 {
-            text-align: center;
-        }
-
-        table {
-            border-collapse: collapse;
-        }
-
-        table.center {
-            width: 80%;
-            margin-left: auto;
-            margin-right: auto;
-        }
-
-        table,
-        th,
-        td {
-            border: 1px solid black;
-            height: 60px;
-            vertical-align: center;
-            padding: 2px;
-        }
-    </style>
 </head>
-
 <body>
-
-    <h1>物资借用申请表</h1>
+<!--startprint-->
+    <h1>物资借用申请表     <button type="button" onclick="window.print();">打印</button></h1>
     <table class="center">
         <thead>
             <tr>
@@ -40,8 +20,12 @@
         </thead>
         <tbody>
             <tr>
-                <td>借用表ID</td>
+                <td>物资ID</td>
                 <td>{{ lend_table.id }}</td>
+            </tr>
+            <tr>
+                <td>借用物资</td>
+                <td>{{ lend_table.name }}</td>
             </tr>
             <tr>
                 <td>借用规格</td>
@@ -52,6 +36,18 @@
                 <td>{{ lend_table.number }}</td>
             </tr>
             <tr>
+                <td>申请者姓名</td>
+                <td>{{ lend_table.user.first_name }}</td>
+            </tr>
+            <tr>
+                <td>申请者邮箱</td>
+                <td>{{ lend_table.user.email }}</td>
+            </tr>
+            <tr>
+                <td>申请组织</td>
+                <td>{{ lend_table.user.organization }}</td>
+            </tr>
+            <tr>
                 <td>借用时间</td>
                 <td>{{ lend_table.lend_time }}</td>
             </tr>
@@ -60,13 +56,42 @@
                 <td>{{ lend_table.return_time }}</td>
             </tr>
             <tr>
-                <td>申请者</td>
-                <td>{{ lend_table.user.first_name }}</td>
-            </tr>
-            <tr>
                 <td>是否已审核</td>
                 <td>{{ lend_table.is_check }}</td>
             </tr>
+            <tr>
+                <td>签名</td>
+                <td></td>
+            </tr>
         </tbody>
     </table>
+<!--endprint-->
 </body>
+<style>
+        h1 {
+            text-align: center;
+        }
+
+        table {
+            border-collapse: collapse;
+        }
+
+        table.center {
+            width: 55%;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        table,
+        th,
+        td {
+            text-align: center;
+            border: 1px solid black;
+            height: 60px;
+            vertical-align: center;
+            padding: 2px;
+        }
+
+    </style>
+</html>
+
